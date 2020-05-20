@@ -1,0 +1,41 @@
+<div class="host">
+    <app-title title="Statistique"></app-title>
+    <div class="right">
+        <button class="mt-3" style="margin-top: 20px" mat-raised-button color="primary"
+            [routerLink]="['/admin/electricite/electrification-rural']">
+            <mat-icon>list</mat-icon>
+            Projets Energies renouvelables
+        </button>
+    </div>
+    <mat-card>
+        <mat-form-field >
+            <mat-label>Province</mat-label>
+            <mat-select (selectionChange)="selectChange($event.value)">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of provinces | async" [value]="e.id">{{ e.libelle }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;
+          <mat-form-field >
+            <mat-label>Commune</mat-label>
+            <mat-select (selectionChange)="selectChange($event.value)">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of communes | async" [value]="e.id">{{ e.libelle }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          &nbsp;&nbsp;
+          <mat-form-field >
+            <mat-label>Annee</mat-label>
+            <mat-select (selectionChange)="selectChange($event.value)">
+              <mat-option value="0">...</mat-option>
+              <mat-option *ngFor="let e of years" [value]="e">{{ e }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <div style="display: block;">
+            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+                [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+            </canvas>
+        </div>
+    </mat-card>
+</div>

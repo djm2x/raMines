@@ -1,0 +1,19 @@
+<mat-sidenav-container #sidenav class="example-sidenav-container" style=" z-index: 9;margin-top: -15px;">
+    <mat-sidenav #snav mode="push" [opened]="opened"
+        [fixedInViewport]="true" fixedTopGap="50">
+        <mat-nav-list class="list" [style.width]="width" style="padding: 0;">
+            <mat-list-item *ngFor="let e of routes" [routerLink]="[e.route]" routerLinkActive="router-link-active">
+                <span>{{e.name}}</span>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content style="height: 100vh;">
+        <button class="menu" color="primary" (click)="snav.toggle()" mat-raised-button><mat-icon>menu</mat-icon></button>
+        <main >
+            <router-outlet #o="outlet"></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

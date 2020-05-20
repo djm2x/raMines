@@ -1,0 +1,73 @@
+<!-- Content Header (Page header) -->
+
+<div class="host">
+  <div >
+    <app-title title="Electrification rurale"></app-title>
+    <!-- right column -->
+    <form (ngSubmit)="submit(myForm)" [formGroup]="myForm">
+      <div class="row">
+        <div class="col-md-12">
+          <mat-card>
+            <div style="margin-bottom: 20px;">
+              <h5>Informations</h5>
+            </div>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Province</mat-label>
+              <mat-select formControlName="idProvince">
+                <mat-option *ngFor="let e of provinces | async" [value]="e.id">{{ e.libelle }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>NBR DE LOGEMENT</mat-label>
+              <input matInput type="number" formControlName="nbrLogement" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>NBR DE VILLAGES</mat-label>
+              <input matInput type="number" formControlName="nbrVillage" required>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>TAUX ELECTRIFICATION</mat-label>
+              <input matInput type="number" formControlName="tauxElectrification" required>
+            </mat-form-field>
+
+            <div class="inputs">
+              <mat-form-field appearance="outline">
+                <mat-label>Mois</mat-label>
+                <mat-select formControlName="mois">
+                  <mat-option value="">...</mat-option>
+                  <mat-option *ngFor="let e of uow.monthsAlpha" [value]="e.id">{{ e.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Annee</mat-label>
+                <mat-select formControlName="annee">
+                  <mat-option value="">...</mat-option>
+                  <mat-option *ngFor="let e of uow.years" [value]="e">{{ e }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+          </mat-card>
+
+          <div class="actions">
+            <button style="margin-top: 20px;"
+            [disabled]="myForm.invalid " mat-raised-button
+            color="primary" type="submit">
+            Enregister
+          </button>
+
+          <button style="margin-top: 20px; margin-right: 20px;" [routerLink]="['/admin/electrificationRural']" mat-raised-button type="button">
+          Retout
+        </button>
+        </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
